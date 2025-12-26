@@ -34,7 +34,6 @@ def parse_minfin_currency():
     try:
         url = "https://minfin.com.ua/ua/currency/"
         driver.get(url)
-        print(f"Завантажено: {url}")
         time.sleep(5)
 
         tables = driver.find_elements(By.TAG_NAME, "table")
