@@ -9,7 +9,6 @@ def handle(data):
     try:
         banks_data = parse_minfin_currency()
 
-        # Add parsed data to the response
         data['currency_rates'] = banks_data
         data['status'] = 'success'
         data['total_banks'] = len(banks_data)
@@ -38,18 +37,16 @@ def parse_minfin_currency():
         print(f"Завантажено: {url}")
         time.sleep(5)
 
-        # Знаходимо всі таблиці
         tables = driver.find_elements(By.TAG_NAME, "table")
         print(f"Знайдено таблиць: {len(tables)}")
 
-        # Беремо 3-ю таблицю (індекс 2)
+        # Беремо 3-ю таблицю 
         if len(tables) >= 3:
             table = tables[2]
             rows = table.find_elements(By.TAG_NAME, "tr")
 
             banks_data = []
 
-            # Пропускаємо перші 2 рядки (заголовки)
             for row in rows[2:]:
                 cols = row.find_elements(By.TAG_NAME, "td")
 
